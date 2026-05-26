@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NewTec Interview Growth Plan — Constantine / Scene</title>
+<meta name="description" content="A 30-Day System for Turning Insurance Technology Attention into Booked Demos">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06090F;--surface:#0C1220;--surface2:#101828;
+  --border:#1A2840;--border2:#1E3050;
+  --blue:#3B82F6;--blue-glow:rgba(59,130,246,0.12);--blue-glow2:rgba(59,130,246,0.07);
+  --text:#EDF2FF;--text-2:#7A93C0;--text-3:#3E5278;
+  --amber:#F59E0B;--accent:rgba(59,130,246,0.22);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.65;overflow-x:hidden;}
+
+/* GRAIN OVERLAY */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.5;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:52px;background:rgba(6,9,15,0.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-brand{font-family:'DM Serif Display',serif;font-size:14px;color:var(--text);display:flex;align-items:center;gap:8px;letter-spacing:0.01em;text-decoration:none;}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);box-shadow:0 0 8px var(--blue);flex-shrink:0;}
+.nav-links{display:flex;gap:1.25rem;}
+.nav-links a{font-size:11px;letter-spacing:0.09em;text-transform:uppercase;color:var(--text-3);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text-2);}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:110px 1.5rem 5rem;position:relative;overflow:hidden;}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:52px 52px;opacity:0.18;mask-image:radial-gradient(ellipse 85% 65% at 50% 40%,black,transparent);-webkit-mask-image:radial-gradient(ellipse 85% 65% at 50% 40%,black,transparent);}
+.hero-glow{position:absolute;top:15%;left:50%;transform:translateX(-50%);width:700px;height:280px;background:radial-gradient(ellipse,rgba(59,130,246,0.1) 0%,transparent 68%);pointer-events:none;}
+.badge{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);border:1px solid var(--accent);background:var(--blue-glow2);padding:5px 13px;border-radius:2px;margin-bottom:2rem;position:relative;z-index:1;}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4.8vw,3.6rem);line-height:1.14;letter-spacing:-0.025em;color:var(--text);max-width:800px;position:relative;z-index:1;margin-bottom:1.5rem;}
+h1 em{font-style:italic;color:var(--blue);}
+.hero-sub{font-size:15px;color:var(--text-2);max-width:540px;line-height:1.75;position:relative;z-index:1;margin-bottom:2.5rem;}
+.hero-sub strong{color:var(--text);font-weight:500;}
+.btn-row{display:flex;gap:10px;justify-content:center;position:relative;z-index:1;flex-wrap:wrap;}
+.btn{padding:10px 22px;border-radius:2px;font-size:12px;font-weight:500;cursor:pointer;text-decoration:none;letter-spacing:0.05em;transition:all 0.2s;display:inline-block;border:1px solid;}
+.btn-p{background:var(--blue);color:#fff;border-color:var(--blue);}
+.btn-p:hover{background:#2563EB;box-shadow:0 0 18px rgba(59,130,246,0.28);}
+.btn-g{background:transparent;color:var(--text-2);border-color:var(--border2);}
+.btn-g:hover{color:var(--text);border-color:var(--text-3);}
+.stat-row{display:flex;gap:2.5rem;justify-content:center;margin-top:4rem;position:relative;z-index:1;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-n{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--text);display:block;}
+.stat-l{font-size:10px;letter-spacing:0.09em;text-transform:uppercase;color:var(--text-3);}
+
+/* SECTIONS */
+.wrap{padding:4.5rem 1.5rem;max-width:960px;margin:0 auto;}
+.stag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--blue);margin-bottom:0.6rem;display:block;}
+h2{font-family:'DM Serif Display',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);line-height:1.18;letter-spacing:-0.015em;color:var(--text);margin-bottom:0.9rem;}
+.lead{font-size:15px;color:var(--text-2);max-width:600px;line-height:1.78;margin-bottom:2.75rem;}
+.divider{width:100%;height:1px;background:var(--border);}
+
+/* ROLE DIFFERENT */
+.role-diff-body{max-width:700px;font-size:16px;color:var(--text-2);line-height:1.8;}
+.role-diff-body strong{color:var(--text);font-weight:500;}
+.role-diff-body p+p{margin-top:1.25rem;}
+.inline-kpi{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--blue);background:var(--blue-glow2);border:1px solid var(--accent);padding:3px 10px;border-radius:2px;margin-top:1.25rem;}
+
+/* BRING CARDS */
+.bring-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.bring-card{background:var(--surface);padding:1.4rem;transition:background 0.2s;}
+.bring-card:hover{background:var(--surface2);}
+.bring-icon{width:30px;height:30px;border:1px solid var(--accent);border-radius:2px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;background:var(--blue-glow2);}
+.bring-icon svg{width:14px;height:14px;stroke:var(--blue);fill:none;stroke-width:1.6;}
+.bring-card h3{font-size:12px;font-weight:600;color:var(--text);margin-bottom:0.4rem;letter-spacing:0.02em;}
+.bring-card p{font-size:12px;color:var(--text-2);line-height:1.58;}
+
+/* SCENE SECTION */
+.scene-block{display:grid;grid-template-columns:1fr 1fr;gap:1px;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.scene-box{background:var(--surface);padding:1.6rem;}
+.scene-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:0.5rem;display:block;}
+.scene-box p{font-size:13px;color:var(--text-2);line-height:1.65;}
+.scene-box p strong{color:var(--text);font-weight:500;}
+.scene-header{grid-column:1/-1;background:var(--surface);padding:1.4rem 1.6rem;border-bottom:1px solid var(--border);}
+.scene-header p{font-size:14px;color:var(--text-2);line-height:1.7;}
+.scene-header p em{color:var(--blue);font-style:normal;font-weight:500;}
+
+/* PERSONA */
+.ptoggle{display:flex;border:1px solid var(--border);border-radius:2px;overflow:hidden;margin-bottom:1px;width:fit-content;}
+.ptab{padding:8px 18px;font-size:11px;font-weight:500;letter-spacing:0.05em;cursor:pointer;background:var(--surface);color:var(--text-3);border:none;transition:all 0.2s;}
+.ptab.on{background:var(--blue);color:#fff;}
+.ppanel{display:none;border:1px solid var(--border);border-radius:0 0 4px 4px;overflow:hidden;}
+.ppanel.on{display:grid;grid-template-columns:1fr 1fr;}
+.pname{grid-column:1/-1;background:var(--surface);padding:1.4rem 1.6rem;border-bottom:1px solid var(--border);}
+.pname h3{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--text);}
+.pbox{background:var(--surface);padding:1.5rem;}
+.pbox:nth-child(even){border-left:1px solid var(--border);}
+.pbox:nth-child(n+4){border-top:1px solid var(--border);}
+.plabel{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:0.45rem;display:block;}
+.pbox p{font-size:13px;color:var(--text-2);line-height:1.62;}
+.pbox p em{color:var(--blue);font-style:normal;font-weight:500;}
+
+/* FUNNEL */
+.fsteps{display:flex;overflow-x:auto;padding-bottom:1px;}
+.fstep{flex:1;min-width:110px;cursor:pointer;}
+.fstep-in{padding:1rem 0.65rem 0.8rem;text-align:center;background:var(--surface);border:1px solid var(--border);border-right:none;transition:all 0.2s;}
+.fstep:last-child .fstep-in{border-right:1px solid var(--border);}
+.fstep.on .fstep-in{background:var(--blue-glow);border-color:var(--blue);}
+.fstep.on:not(:last-child) .fstep-in{border-right-color:transparent;}
+.fn{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-3);letter-spacing:0.1em;margin-bottom:0.4rem;}
+.fl{font-size:11px;font-weight:500;color:var(--text-3);line-height:1.3;}
+.fstep.on .fl{color:var(--text);}
+.fdetail{display:none;background:var(--surface);border:1px solid var(--border);border-top:none;border-radius:0 0 4px 4px;padding:1.75rem;}
+.fdetail.open{display:block;}
+.fdetail h4{font-family:'DM Serif Display',serif;font-size:1.35rem;color:var(--text);margin-bottom:0.65rem;}
+.fdetail p{font-size:13px;color:var(--text-2);line-height:1.7;}
+.fkpi{margin-top:1rem;display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);background:var(--blue-glow2);border:1px solid var(--accent);padding:4px 10px;border-radius:2px;}
+
+/* CAMPAIGN */
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.ccard{background:var(--surface);padding:1.6rem;position:relative;}
+.ccard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--blue);opacity:0;transition:opacity 0.2s;}
+.ccard:hover::before{opacity:1;}
+.ctype{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:0.6rem;display:block;}
+.ccard h4{font-size:13px;font-weight:600;color:var(--text);margin-bottom:0.6rem;line-height:1.4;}
+.ccard p{font-size:12px;color:var(--text-2);line-height:1.62;}
+.cmeta{margin-top:0.9rem;padding-top:0.9rem;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3);}
+
+/* WEEK TABS */
+.wtabs{display:flex;border:1px solid var(--border);border-radius:2px;overflow:hidden;margin-bottom:1px;}
+.wtab{flex:1;padding:9px;font-size:11px;font-weight:500;text-align:center;cursor:pointer;background:var(--surface);color:var(--text-3);border:none;transition:all 0.2s;border-right:1px solid var(--border);}
+.wtab:last-child{border-right:none;}
+.wtab.on{background:var(--blue-glow);color:var(--text);}
+.wpanel{display:none;background:var(--surface);border:1px solid var(--border);border-top:none;border-radius:0 0 4px 4px;padding:1.75rem;}
+.wpanel.on{display:block;}
+.wpanel h4{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--text);margin-bottom:1rem;}
+.tlist{list-style:none;display:flex;flex-direction:column;gap:0.55rem;}
+.tlist li{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text-2);line-height:1.55;}
+.tlist li::before{content:'→';color:var(--blue);font-family:'JetBrains Mono',monospace;font-size:11px;flex-shrink:0;margin-top:2px;}
+
+/* KPI */
+.kpi-note{font-size:11px;color:var(--text-3);font-family:'JetBrains Mono',monospace;margin-bottom:1.75rem;padding:8px 12px;border:1px solid var(--border);border-left:2px solid var(--amber);display:inline-block;}
+.kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid var(--border);border-radius:4px 4px 0 0;overflow:hidden;}
+.kcard{background:var(--surface);padding:1.4rem;}
+.kn{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--text);display:block;line-height:1;margin-bottom:0.35rem;}
+.kl{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);}
+.kstar{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--blue);padding:1.1rem 1.4rem;border-radius:0 0 4px 4px;}
+.kstar-l{font-size:12px;color:var(--text-2);margin-bottom:0.3rem;}
+.kstar-v{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--blue);font-weight:500;}
+
+/* FORM */
+.fwrap{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:1.75rem;max-width:460px;}
+.fwrap h4{font-family:'DM Serif Display',serif;font-size:1.25rem;color:var(--text);margin-bottom:1.4rem;}
+.frow{margin-bottom:0.85rem;}
+.frow label{display:block;font-size:10px;letter-spacing:0.09em;text-transform:uppercase;color:var(--text-3);margin-bottom:5px;}
+.frow input,.frow select{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-size:13px;font-family:'DM Sans',sans-serif;padding:8px 11px;border-radius:2px;outline:none;transition:border-color 0.2s;-webkit-appearance:none;appearance:none;}
+.frow input:focus,.frow select:focus{border-color:var(--blue);}
+.frow select option{background:var(--bg);}
+.fsuccess{display:none;text-align:center;padding:2rem 1rem;}
+.fsuccess .ck{width:44px;height:44px;border-radius:50%;background:var(--blue-glow);border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:18px;}
+.fsuccess h4{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--text);margin-bottom:0.5rem;}
+.fsuccess p{font-size:12px;color:var(--text-2);line-height:1.65;}
+
+/* CLOSE */
+#close{text-align:center;padding:5rem 1.5rem;border-top:1px solid var(--border);position:relative;}
+#close::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:70px;background:linear-gradient(var(--blue),transparent);}
+.credit{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--text-3);margin-top:1.5rem;}
+.credit span{color:var(--blue);}
+
+/* SCROLL FADE */
+.fi{opacity:0;transform:translateY(18px);transition:opacity 0.5s,transform 0.5s;}
+.fi.vis{opacity:1;transform:none;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .cgrid{grid-template-columns:1fr;}
+  .kgrid{grid-template-columns:repeat(2,1fr);}
+  .ppanel.on{grid-template-columns:1fr;}
+  .pname{grid-column:1;}
+  .pbox:nth-child(even){border-left:none;border-top:1px solid var(--border);}
+  .scene-block{grid-template-columns:1fr;}
+  .scene-header{grid-column:1;}
+  h1{font-size:1.9rem;}
+  .bring-grid{grid-template-columns:repeat(2,1fr);}
+  .stat-row{gap:1.5rem;}
+  .fstep{min-width:90px;}
+  .wtabs{flex-wrap:wrap;}
+  .wtab{flex:none;width:50%;border-right:1px solid var(--border);}
+}
+@media(max-width:480px){
+  .bring-grid{grid-template-columns:1fr;}
+  .kgrid{grid-template-columns:1fr;}
+  h1{font-size:1.7rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#hero"><span class="nav-dot"></span>NewTec Interview Growth Plan</a>
+  <div class="nav-links">
+    <a href="#role">Role</a>
+    <a href="#bring">What I Bring</a>
+    <a href="#scene">Background</a>
+    <a href="#buyers">Buyers</a>
+    <a href="#funnel">Funnel</a>
+    <a href="#plan">30 Days</a>
+    <a href="#kpi">KPIs</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="badge">Interview Presentation &nbsp;·&nbsp; Social Media &amp; Lead Generation Manager &nbsp;·&nbsp; NewTec Insurance Systems</div>
+  <h1>A 30-Day System for Turning Insurance Technology Attention into <em>Booked Demos</em></h1>
+  <p class="hero-sub">Built for B2B SaaS marketing in the insurance technology space — <strong>content, landing pages, email follow-up,</strong> and measurable lead generation. Not just social posts. A system.</p>
+  <div class="btn-row">
+    <a href="#funnel" class="btn btn-p">View the Funnel</a>
+    <a href="#plan" class="btn btn-g">See the 30-Day Plan</a>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><span class="stat-n">6</span><span class="stat-l">Funnel Stages</span></div>
+    <div class="stat"><span class="stat-n">30</span><span class="stat-l">Day Framework</span></div>
+    <div class="stat"><span class="stat-n">2</span><span class="stat-l">Target ICPs</span></div>
+    <div class="stat"><span class="stat-n">1</span><span class="stat-l">Main KPI</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHY THIS ROLE IS DIFFERENT -->
+<section class="wrap fi" id="role">
+  <span class="stag">00 · Why this role is different</span>
+  <h2>This Is Not a Social Media Job</h2>
+  <div class="role-diff-body">
+    <p>Insurance technology marketing is not normal social media. The goal is not to post more content and wait for organic growth. The goal is to <strong>translate technical software value into clear buyer pain</strong>, route that pain-aware audience through a focused landing page, and convert attention into qualified demo conversations.</p>
+    <p>The buyers are MGAs, carriers, and underwriting operators — people making operational decisions about software platforms. They don't respond to hype. They respond to <strong>content that names their exact problem</strong>, landing pages that make the next step obvious, and follow-up that doesn't feel like a mass email.</p>
+    <p>If brought into this role, I would build that system — not just manage a posting calendar.</p>
+    <span class="inline-kpi">The main KPI is not likes. The main KPI is qualified demo conversations.</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHAT I WOULD BRING -->
+<section class="wrap fi" id="bring">
+  <span class="stag">01 · What I would bring into this role</span>
+  <h2>Six Things I Would Start Doing Immediately</h2>
+  <p class="lead">Not after being trained. Not after a 90-day ramp. From day one, here is the contribution I would make to each part of this role.</p>
+  <div class="bring-grid">
+    <div class="bring-card">
+      <div class="bring-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h6"/></svg>
+      </div>
+      <h3>Content Strategy</h3>
+      <p>I would turn technical insurance software value into clear buyer pain — LinkedIn posts, blog copy, newsletters — anchored to specific operational problems, not feature lists.</p>
+    </div>
+    <div class="bring-card">
+      <div class="bring-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/><path d="m13 13 6 6"/></svg>
+      </div>
+      <h3>Lead Generation</h3>
+      <p>I would build campaigns that move attention toward demo requests — not just impressions. Every piece of content would have a clear next step that leads toward a conversion.</p>
+    </div>
+    <div class="bring-card">
+      <div class="bring-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3>Landing Pages</h3>
+      <p>I would create focused pages with one buyer, one pain, and one CTA. No nav bar. No product tour. One job: get the right person to book a 20-minute demo.</p>
+    </div>
+    <div class="bring-card">
+      <div class="bring-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <h3>Follow-Up Systems</h3>
+      <p>I would help qualified leads keep moving after the first click — email sequences timed to intent, not generic drip cadences. Follow-up specific to what they submitted.</p>
+    </div>
+    <div class="bring-card">
+      <div class="bring-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <h3>KPI Tracking</h3>
+      <p>I would measure demo page visits, form submissions, CTR, lead quality, and booked demos — and bring a clear weekly report on what is creating movement and what is not.</p>
+    </div>
+    <div class="bring-card">
+      <div class="bring-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      </div>
+      <h3>Creative Execution</h3>
+      <p>I would write, design, test, and improve assets without waiting to be micromanaged on every output. I would deliver drafts, not questions.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BACKGROUND / SCENE -->
+<section class="wrap fi" id="scene">
+  <span class="stag">02 · Why my background fits</span>
+  <h2>What I've Built and What Transfers</h2>
+  <p class="lead">This is not a portfolio pitch. It's a straightforward case for why Scene's work translates directly to what NewTec needs from this role.</p>
+  <div class="scene-block">
+    <div class="scene-header">
+      <p>I run <em>Scene</em> — a local business growth systems brand focused on helping businesses generate more calls, quote requests, bookings, and customers through websites, landing pages, lead capture flows, conversion-focused copy, and outreach systems. <em>Not just design work. Systems that connect content to qualified leads.</em></p>
+    </div>
+    <div class="scene-box">
+      <span class="scene-label">What I've done at Scene</span>
+      <p>Built and deployed website and lead-flow systems. Wired lead capture forms to automation and email notification workflows. Written conversion-focused copy for local service businesses. Built outreach and sales messaging. Designed landing pages with specific buyer personas and single CTAs in mind.</p>
+    </div>
+    <div class="scene-box">
+      <span class="scene-label">What directly transfers to NewTec</span>
+      <p>The thinking behind every Scene project is the same thinking this role requires: <strong>who is the buyer, what is their exact pain, what is the next step, and how do we measure whether it worked?</strong> The product is different. The system is the same.</p>
+    </div>
+    <div class="scene-box">
+      <span class="scene-label">Why the B2B complexity interests me</span>
+      <p>NewTec is more technical. Longer sales cycle. More specific buyers. That's not a challenge — that's an opportunity to apply the same funnel thinking at a higher level of precision. B2B SaaS requires more careful buyer research and more specific messaging. That suits how I already work.</p>
+    </div>
+    <div class="scene-box">
+      <span class="scene-label">The creative + analytical angle</span>
+      <p>My background in fashion design means I have a developed visual eye — but for this role, <strong>creative execution serves business results, not aesthetics.</strong> A landing page isn't beautiful if it doesn't convert. A LinkedIn post isn't good if it doesn't drive clicks toward a demo page.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BUYER PERSONAS -->
+<section class="wrap fi" id="buyers">
+  <span class="stag">03 · The buyers I would focus on first</span>
+  <h2>Two ICPs. Not Five.</h2>
+  <p class="lead">Most B2B campaigns fail because they try to reach everyone. My starting focus would be two decision-makers most aligned with NewTec's public positioning around carriers and MGAs. Two sharp personas outperform five shallow ones.</p>
+  <div class="ptoggle" role="tablist" aria-label="Buyer personas">
+    <button class="ptab on" onclick="sp(0)" role="tab" aria-selected="true" aria-controls="p0">MGA Founder</button>
+    <button class="ptab" onclick="sp(1)" role="tab" aria-selected="false" aria-controls="p1">Carrier Ops Leader</button>
+  </div>
+  <div class="ppanel on" id="p0" role="tabpanel">
+    <div class="pname"><h3>MGA Founder / Program Administrator</h3></div>
+    <div class="pbox">
+      <span class="plabel">Core Pain</span>
+      <p>Launching new programs takes too long. Spreadsheet-heavy workflows don't scale. Carrier relationships require clean reporting and professional systems — and they need them fast before competitors catch up.</p>
+    </div>
+    <div class="pbox">
+      <span class="plabel">Content Hook</span>
+      <p><em>"What would it cost to launch your next program 60 days faster?"</em></p>
+    </div>
+    <div class="pbox">
+      <span class="plabel">Demo Trigger</span>
+      <p>Speed, credibility, and operational control. They want to know they can scale without hiring more staff or rebuilding their process every year.</p>
+    </div>
+    <div class="pbox">
+      <span class="plabel">Best Channel</span>
+      <p>LinkedIn thought leadership and targeted outreach. They're active, they're looking for edge, and they respond to content that names specific pain — not buzzwords about digital transformation.</p>
+    </div>
+  </div>
+  <div class="ppanel" id="p1" role="tabpanel">
+    <div class="pname"><h3>Carrier Operations Leader / VP of Underwriting</h3></div>
+    <div class="pbox">
+      <span class="plabel">Core Pain</span>
+      <p>Data comes from too many sources. Reporting is inconsistent. Compliance documentation is manual. Integration with existing systems is slow and expensive — and the team feels it every Friday afternoon.</p>
+    </div>
+    <div class="pbox">
+      <span class="plabel">Content Hook</span>
+      <p><em>"What if your underwriting team got their Friday afternoon back?"</em></p>
+    </div>
+    <div class="pbox">
+      <span class="plabel">Demo Trigger</span>
+      <p>Cleaner data pipelines, automated reporting, better workflow visibility — without losing the control they've built into their current process.</p>
+    </div>
+    <div class="pbox">
+      <span class="plabel">Best Channel</span>
+      <p>LinkedIn and industry newsletters. They read more than they post. Educational content that names their exact operational headache — not product feature lists — gets them to click.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FUNNEL -->
+<section class="wrap fi" id="funnel">
+  <span class="stag">04 · The demo growth funnel</span>
+  <h2>Every Step Has One Job</h2>
+  <p class="lead">The content's job is not to go viral. It's to get a pain-aware buyer to click through. The landing page's job is not to explain everything. It's to drive one action: book the demo. Click any stage below.</p>
+  <div class="fsteps" role="tablist" aria-label="Funnel stages">
+    <div class="fstep on" onclick="sf(0,this)" role="tab" aria-selected="true"><div class="fstep-in"><div class="fn">01</div><div class="fl">LinkedIn Content</div></div></div>
+    <div class="fstep" onclick="sf(1,this)" role="tab" aria-selected="false"><div class="fstep-in"><div class="fn">02</div><div class="fl">Pain-Aware Landing Page</div></div></div>
+    <div class="fstep" onclick="sf(2,this)" role="tab" aria-selected="false"><div class="fstep-in"><div class="fn">03</div><div class="fl">Demo CTA</div></div></div>
+    <div class="fstep" onclick="sf(3,this)" role="tab" aria-selected="false"><div class="fstep-in"><div class="fn">04</div><div class="fl">Lead Capture</div></div></div>
+    <div class="fstep" onclick="sf(4,this)" role="tab" aria-selected="false"><div class="fstep-in"><div class="fn">05</div><div class="fl">Email Follow-Up</div></div></div>
+    <div class="fstep" onclick="sf(5,this)" role="tab" aria-selected="false"><div class="fstep-in"><div class="fn">06</div><div class="fl">Booked Demo</div></div></div>
+  </div>
+  <div class="fdetail open" id="fd0">
+    <h4>LinkedIn Content</h4>
+    <p>I would publish content targeting specific insurance-tech pain — bordereaux, manual endorsements, slow program launches, reporting gaps. Not generic "digital transformation" language. Each post ends with a clear, low-friction next step routing pain-aware buyers to a landing page. The goal is not impressions. The goal is qualified clicks from people who recognize their own problem in the post.</p>
+    <span class="fkpi">Goal → qualified clicks, not impressions</span>
+  </div>
+  <div class="fdetail" id="fd1">
+    <h4>Pain-Aware Landing Page</h4>
+    <p>One page. One specific buyer pain. One CTA. No navigation. No distraction. The headline mirrors the content that brought them here — if the post was about spreadsheet-heavy MGA workflows, the landing page opens with: <em style="color:var(--text);font-style:normal;">"Still managing your MGA operations on spreadsheets?"</em> — not a product overview. Continuity between content and landing page is what prevents drop-off at this stage.</p>
+    <span class="fkpi">Goal → demo page visits from the right people</span>
+  </div>
+  <div class="fdetail" id="fd2">
+    <h4>Demo CTA</h4>
+    <p>Not "Learn More." Not "Contact Us." The ask is specific, low-friction, and outcome-focused: <em style="color:var(--text);font-style:normal;">"Book a 20-minute platform walkthrough."</em> That phrasing removes pressure. It signals a conversation, not a sales pitch. I would test CTA wording, placement, and button copy to find what converts best for NewTec's specific buyers and where they are in their decision journey.</p>
+    <span class="fkpi">Goal → demo form opens from interested buyers</span>
+  </div>
+  <div class="fdetail" id="fd3">
+    <h4>Lead Capture</h4>
+    <p>Short enough to not lose people. Specific enough to qualify intent. Fields: name, company, role, email, and one open question — <em style="color:var(--text);font-style:normal;">"What's your biggest operational challenge right now?"</em> That single field pre-qualifies intent, surfaces objections before the demo, and gives the sales conversation a real head start before the call even happens.</p>
+    <span class="fkpi">Goal → form submissions with role + context captured</span>
+  </div>
+  <div class="fdetail" id="fd4">
+    <h4>Email Follow-Up</h4>
+    <p>Immediately after submission: confirmation plus one useful piece of content tied to what they said their challenge was. 48 hours later, a short specific follow-up — not a generic drip sequence. Subject: <em style="color:var(--text);font-style:normal;">"Quick follow-up on your demo request."</em> Preview: <em style="color:var(--text);font-style:normal;">"One thing most MGAs notice in the first walkthrough…"</em> I would build and monitor this workflow so leads keep moving, not sitting in a queue.</p>
+    <span class="fkpi">Goal → reply rate, open rate, demo held</span>
+  </div>
+  <div class="fdetail" id="fd5">
+    <h4>Booked Demo</h4>
+    <p>This is the only output that actually counts. Not follower count. Not form submissions sitting unread. A qualified insurance professional on a live call with the NewTec team — who showed up because content named their exact pain, a landing page made the next step obvious, and a follow-up kept them engaged long enough to commit. That is what I would build toward every week, and what I would measure every week.</p>
+    <span class="fkpi" style="border-color:rgba(245,158,11,0.3);color:var(--amber);background:rgba(245,158,11,0.05)">Main KPI → booked demo conversations with qualified buyers</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CAMPAIGN SNAPSHOT -->
+<section class="wrap fi" id="campaign">
+  <span class="stag">05 · Sample campaign I would test first</span>
+  <h2>The Hidden Cost of Manual Insurance Operations</h2>
+  <p class="lead">One campaign theme. Three connected assets. LinkedIn post routes to landing page. Landing page routes to the demo form. Email keeps the lead moving after submission. Each piece does one job and hands off to the next.</p>
+  <div class="cgrid">
+    <div class="ccard">
+      <span class="ctype">LinkedIn Post</span>
+      <h4>Your MGA is still running bordereaux on spreadsheets.</h4>
+      <p>That may work when volume is low. But once submissions grow, every manual report becomes a delay: slower reconciliations, more errors, more staff time, and less visibility for carriers.</p>
+      <p style="margin-top:0.65rem;">The question is not whether spreadsheets are familiar. The question is what they are costing you.</p>
+      <div class="cmeta">Audience: MGA Founders &nbsp;·&nbsp; Goal: landing page click</div>
+    </div>
+    <div class="ccard">
+      <span class="ctype">Landing Page</span>
+      <h4>Launch and scale insurance programs without fighting your backend.</h4>
+      <p>A focused platform conversation for MGAs and carriers dealing with manual reporting, disconnected workflows, and slow operational processes.</p>
+      <p style="margin-top:0.65rem;color:var(--blue);font-weight:500;font-size:12px;">→ Book a 20-minute platform demo</p>
+      <div class="cmeta">One CTA only &nbsp;·&nbsp; No nav &nbsp;·&nbsp; Matches post messaging</div>
+    </div>
+    <div class="ccard">
+      <span class="ctype">Email</span>
+      <h4>The hidden cost of manual insurance operations</h4>
+      <p style="margin-bottom:0.5rem;color:var(--text-3);font-size:11px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.08em;">Preview line:</p>
+      <p>A short breakdown of how spreadsheet-heavy workflows slow down reporting, endorsements, and program growth — and what modern MGA operations look like instead.</p>
+      <div class="cmeta">Subject-line focused &nbsp;·&nbsp; Routes back to landing page</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 30-DAY PLAN -->
+<section class="wrap fi" id="plan">
+  <span class="stag">06 · First 30 days if brought into this role</span>
+  <h2>A Starting Framework, Not a Guarantee</h2>
+  <p class="lead">Week one is about understanding before anything goes live. The plan below reflects how I would structure the first month — subject to what I find in the baseline audit on day one.</p>
+  <div class="wtabs" role="tablist" aria-label="30-day plan weeks">
+    <button class="wtab on" onclick="sw(0)" role="tab">Week 1 — Baseline</button>
+    <button class="wtab" onclick="sw(1)" role="tab">Week 2 — Content</button>
+    <button class="wtab" onclick="sw(2)" role="tab">Week 3 — Campaign</button>
+    <button class="wtab" onclick="sw(3)" role="tab">Week 4 — Review</button>
+  </div>
+  <div class="wpanel on" id="wp0">
+    <h4>Baseline + Audit</h4>
+    <ul class="tlist">
+      <li>Audit current website, social channels, landing pages, demo CTA, lead forms, and email follow-up workflows</li>
+      <li>Establish baseline metrics: traffic, LinkedIn engagement, lead volume, current demo booking rate</li>
+      <li>Map the existing content-to-demo path and identify the biggest drop-off point</li>
+      <li>Work with leadership to clarify ICP priorities — who is the most important buyer right now and what pain are they most responsive to?</li>
+      <li>Set week-four targets based on real baselines, not assumptions made before day one</li>
+    </ul>
+  </div>
+  <div class="wpanel" id="wp1">
+    <h4>Buyer Messaging + Pain-Based Content</h4>
+    <ul class="tlist">
+      <li>Build a content calendar around specific insurance-tech pain points: bordereaux, endorsements, manual reporting, program launch speed, and compliance gaps</li>
+      <li>Write 4–6 LinkedIn posts targeting MGA founders and carrier operations leaders — each anchored to real operational pain with a clear landing page CTA</li>
+      <li>Draft one focused landing page headline, subhead, and CTA for the primary buyer identified in week one</li>
+      <li>Set up or improve the email follow-up sequence for demo form submissions</li>
+      <li>Begin publishing and track what gets engagement versus what gets actual clicks toward the demo page</li>
+    </ul>
+  </div>
+  <div class="wpanel" id="wp2">
+    <h4>Demo Campaign Launch</h4>
+    <ul class="tlist">
+      <li>Launch one focused landing page targeting the primary ICP with one specific campaign angle</li>
+      <li>Run the LinkedIn content campaign and route engaged visitors directly to the landing page</li>
+      <li>Test the full funnel end-to-end: content → landing page → form → email follow-up → demo booking</li>
+      <li>Monitor demo page visits, form submissions, and email open rates daily</li>
+      <li>Identify one element that is not working and cut it before week four rather than letting it drag</li>
+    </ul>
+  </div>
+  <div class="wpanel" id="wp3">
+    <h4>Review + Improve</h4>
+    <ul class="tlist">
+      <li>Review all KPIs: clicks, demo page visits, form submissions, lead quality, follow-up response rate, and booked demos held</li>
+      <li>Compare results against the week-one baseline — where did the system work and where did it break down?</li>
+      <li>Cut what did not create movement toward demos. Double down on what did.</li>
+      <li>Present findings and a clear month-two recommendation to leadership</li>
+      <li>Week four determines the roadmap — not assumptions made before the first piece of content went live</li>
+    </ul>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- KPI DASHBOARD -->
+<section class="wrap fi" id="kpi">
+  <span class="stag">07 · What I would measure</span>
+  <h2>The Main KPI Is Not Likes</h2>
+  <p class="lead">Engagement, reach, and impressions are inputs. The output that matters is qualified demo conversations. Below is a sample projection model for a first 30-day sprint.</p>
+  <div class="kpi-note">⚠ Sample projection benchmarks — real targets would be set after reviewing NewTec's current baseline data in week one. These are not guaranteed results.</div>
+  <div class="kgrid">
+    <div class="kcard"><span class="kn">20</span><span class="kl">Content posts published</span></div>
+    <div class="kcard"><span class="kn">1–2</span><span class="kl">Landing pages live</span></div>
+    <div class="kcard"><span class="kn">500</span><span class="kl">Target accounts reached</span></div>
+    <div class="kcard"><span class="kn">300</span><span class="kl">Demo page visits</span></div>
+    <div class="kcard"><span class="kn">12</span><span class="kl">Lead form submissions</span></div>
+    <div class="kcard"><span class="kn" style="color:var(--blue);">4</span><span class="kl">Qualified demo requests</span></div>
+  </div>
+  <div class="kstar">
+    <div>
+      <div class="kstar-l">Primary success metric</div>
+      <div class="kstar-v">Booked demo conversations with qualified insurance operators — not follower count, not impressions, not form submissions that go nowhere</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DEMO FORM -->
+<section class="wrap fi" id="demo">
+  <span class="stag">08 · What the lead capture looks like</span>
+  <h2>One Form. One Qualification.</h2>
+  <p class="lead">Short enough to not lose people. Specific enough to qualify intent. This is what the demo lead capture experience would look like — the last step before a qualified conversation happens.</p>
+  <div class="fwrap">
+    <h4>Book a 20-Minute Platform Demo</h4>
+    <div id="ff">
+      <div class="frow"><label for="f-name">Your name</label><input id="f-name" type="text" placeholder="Jane Smith"></div>
+      <div class="frow"><label for="f-co">Company</label><input id="f-co" type="text" placeholder="Acme MGA Partners"></div>
+      <div class="frow">
+        <label for="f-role">Your role</label>
+        <select id="f-role">
+          <option value="" disabled selected>Select your role</option>
+          <option>MGA Founder / Owner</option>
+          <option>Program Administrator</option>
+          <option>VP of Underwriting</option>
+          <option>Carrier Operations</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="frow"><label for="f-email">Work email</label><input id="f-email" type="email" placeholder="jane@company.com"></div>
+      <div class="frow"><label for="f-challenge">Biggest operational challenge right now</label><input id="f-challenge" type="text" placeholder="e.g. Manual bordereaux, slow program launches…"></div>
+      <button class="btn btn-p" style="width:100%;margin-top:0.5rem;" onclick="submitDemo()">Request Demo →</button>
+    </div>
+    <div class="fsuccess" id="fsuc" aria-live="polite">
+      <div class="ck" aria-hidden="true">✓</div>
+      <h4>Demo lead captured.</h4>
+      <p>In a real system, this triggers an immediate confirmation email and routes the lead into a qualification workflow. The follow-up would send within 48 hours with content specific to what the buyer submitted as their challenge.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CLOSE -->
+<section id="close" class="fi">
+  <span class="stag" style="display:block;text-align:center;margin-bottom:1rem;">Constantine / Andres Caballero &nbsp;·&nbsp; Scene</span>
+  <h2 style="max-width:580px;margin:0 auto 1.4rem;">Not just content. A system for qualified demo growth.</h2>
+  <p style="font-size:15px;color:var(--text-2);max-width:540px;margin:0 auto 2rem;line-height:1.8;">
+    I'm not here to post content and hope something sticks. My focus is on building the system between attention and a booked demo — content that targets the right pain, landing pages built to convert, follow-up that keeps qualified leads moving, and KPI tracking that shows what is actually working.
+  </p>
+  <div class="btn-row" style="justify-content:center;margin-bottom:2rem;">
+    <a href="#funnel" class="btn btn-p">View the Funnel Again</a>
+    <a href="#plan" class="btn btn-g">Review 30-Day Plan</a>
+  </div>
+  <p class="credit">Presented by <span>Constantine / Scene</span> &nbsp;·&nbsp; Interview Presentation &nbsp;·&nbsp; NewTec Insurance Systems &nbsp;·&nbsp; Social Media &amp; Lead Generation Manager</p>
+</section>
+
+<script>
+function sp(i){
+  document.querySelectorAll('.ptab').forEach(function(t,x){t.classList.toggle('on',x===i);t.setAttribute('aria-selected',x===i);});
+  document.querySelectorAll('.ppanel').forEach(function(p,x){p.classList.toggle('on',x===i);});
+}
+function sf(i,el){
+  document.querySelectorAll('.fstep').forEach(function(s){s.classList.remove('on');s.setAttribute('aria-selected','false');});
+  el.classList.add('on');el.setAttribute('aria-selected','true');
+  document.querySelectorAll('.fdetail').forEach(function(d,x){d.classList.toggle('open',x===i);});
+}
+function sw(i){
+  document.querySelectorAll('.wtab').forEach(function(t,x){t.classList.toggle('on',x===i);});
+  document.querySelectorAll('.wpanel').forEach(function(p,x){p.classList.toggle('on',x===i);});
+}
+function submitDemo(){
+  document.getElementById('ff').style.display='none';
+  document.getElementById('fsuc').style.display='block';
+}
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vis');});
+},{threshold:0.08});
+document.querySelectorAll('.fi').forEach(function(el){obs.observe(el);});
+</script>
+</body>
+</html>
